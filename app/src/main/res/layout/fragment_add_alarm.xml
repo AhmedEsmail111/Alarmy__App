@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="addAlarmViewModel"
+            type="com.example.alarmy.addAlarmFragment.AddAlarmViewModel" />
+
+    </data>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/small8_dimen"
+        android:layout_margin="@dimen/small8_dimen"
+        tools:context=".MainActivity" >
+
+        <ImageButton
+            android:id="@+id/back_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TimePicker
+            android:id="@+id/alarm_time_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:padding="@dimen/small8_dimen"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="lollipop" />
+
+        <Button
+            android:id="@+id/save_time_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="160dp"
+            android:text="@string/time_save"
+            android:onClick="@{()-> addAlarmViewModel.setTime()}"
+            android:textColor="@android:color/white"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alarm_time_picker" />
+
+        <TextView
+            android:id="@+id/time_is_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="282dp"
+            android:text="@string/time_current"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/save_time_button" />
+
+        <TextView
+            android:id="@+id/time_selected_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="187dp"
+            android:layout_marginEnd="216dp"
+            android:text="@string/time_selected"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time_is_text" />
+
+        <Button
+            android:id="@+id/choose_ringtone"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/medium16_dimen"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/medium16_dimen"
+            android:background="@color/colorAccent"
+            android:padding="@dimen/small8_dimen"
+            android:text="@string/Ringtone"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.108"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time_selected_text" />
+
+        <TextView
+            android:id="@+id/ringtone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:padding="@dimen/small8_dimen"
+            android:drawableEnd="@drawable/ic_ringtone_icon"
+            android:text="@{addAlarmViewModel.ringtone}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/lightGray"
+            app:layout_constraintTop_toBottomOf="@+id/choose_ringtone" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:padding="@dimen/small8_dimen"
+            android:textColor="@android:color/white"
+            android:background="@color/colorAccent"
+            android:text="@string/save_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ringtone_text" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</layout>

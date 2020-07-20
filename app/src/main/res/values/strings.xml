@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Alarmy</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nextalarm">nextAlarm</string>
+    <string name="action_settings">Settings</string>
+    <string name="time_picker_example">Time Picker Example</string>
+    <string name="time_pick">Pick the time and press save button</string>
+    <string name="time_save">Save</string>
+    <string name="time_selected"></string>
+    <string name="time_current">The Time is:</string>
+    <string name="Ringtone">Set Ringtone</string>
+    <string name="save_button">Save</string>
+    <string name="music">Music</string>
 </resources>

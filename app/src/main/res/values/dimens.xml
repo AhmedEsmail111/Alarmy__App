@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="too_small4_dimen">4dp</dimen>
+    <dimen name="small8_dimen">8dp</dimen>
+    <dimen name="medium16_dimen">16dp</dimen>
+    <dimen name="big24_dimen">24</dimen>
+    <dimen name="small_text12_dimen">12sp</dimen>
+    <dimen name="medium_text17_dimen">17dp</dimen>
+    <dimen name="big_text22_dimen">22dp</dimen>
+
+</resources>
