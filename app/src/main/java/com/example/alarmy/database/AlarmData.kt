@@ -20,6 +20,7 @@ data class AlarmData(
 
     var ringtone: String? = " " ,
     @ColumnInfo(name = "am_pm")
+
     var amOrPm: String? = " "
 
  

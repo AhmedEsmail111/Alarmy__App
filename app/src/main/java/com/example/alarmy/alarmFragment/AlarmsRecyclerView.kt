@@ -1,42 +1,62 @@
 package com.example.alarmy.alarmFragment
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.alarmy.R
 import com.example.alarmy.database.AlarmData
+import com.example.alarmy.databinding.AlarmsRecyclerViewListBinding
 
-class AlarmsRecyclerView:RecyclerView.Adapter<AlarmsRecyclerView.AlarmsViewHolder>() {
-
-    var data = listOf<AlarmData>()
-
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-
-
+class AlarmsRecyclerView(val clickListener: AlarmClickListener):ListAdapter<AlarmData, AlarmsRecyclerView.AlarmsViewHolder>(AlarmsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmsViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.alarms_recycler_view_list,parent,false)
-        return  AlarmsViewHolder(view)
+        return AlarmsViewHolder.from(parent)
     }
-
-    override fun getItemCount() = data.size
-
 
     override fun onBindViewHolder(holder: AlarmsViewHolder, position: Int) {
-        val item = data[position]
-        holder.day.text = item.dayOfWeek
-        holder.time.text = StringBuilder().append(item.hour).append(" : ").append(item.minute)
-            .append(" ").append(item.amOrPm)
-    }
-    class AlarmsViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val time: TextView = itemView.findViewById(R.id.time)
-        val day:TextView = itemView.findViewById(R.id.day)
+        holder.bind(getItem(position),clickListener)
     }
 
+
+
+
+    class AlarmsViewHolder private constructor(val binding: AlarmsRecyclerViewListBinding):RecyclerView.ViewHolder(binding.root) {
+        //  fun to do the work of binding data to show on the screen
+        fun bind(
+            item: AlarmData,
+            clickListener: AlarmClickListener
+        ) {
+
+            binding.day.text = item.dayOfWeek
+            binding.time.text = StringBuilder().append(item.hour).append(" : ").append(item.minute)
+                .append(" ").append(item.amOrPm)
+
+            binding.clickListener = clickListener
+            binding.alarm = item
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): AlarmsViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = AlarmsRecyclerViewListBinding.inflate(layoutInflater,parent, false)
+                return AlarmsViewHolder(binding)
+            }
+        }
+    }
+
+    class AlarmsDiffCallback: DiffUtil.ItemCallback<AlarmData>(){
+        override fun areItemsTheSame(oldItem: AlarmData, newItem: AlarmData): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: AlarmData, newItem: AlarmData): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+}
+
+class AlarmClickListener(val clickListener: (alarmId: Long) -> Unit){
+    fun onClick(alarm:AlarmData) = clickListener(alarm.alarmId)
 }
